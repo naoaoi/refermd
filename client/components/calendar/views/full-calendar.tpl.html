@@ -1,0 +1,123 @@
+<div>
+    <div class="row">
+        <div class="input-field col s12">
+            <div id="calendar"></div>
+        </div>
+    </div>
+    <a href="#" data-activates="event-out" class="event-collapse right"></a>
+    <!-- START RIGHT SIDEBAR NAV-->
+    <aside id="right-sidebar-nav">
+        <ul id="event-out" class="side-nav events-side-navigation">
+            <li class="li-hover">
+                <a href="#" data-activates="event-out" class="event-close-collapse right"><i class="mdi-navigation-close"></i></a>
+                <div id="right-search" class="row">
+                    <div class="col s12 m12 l12">
+                        <div>
+                            <h4 class="header2 center">{{eve.start}}</h4>
+                            <div class="m-b-20 center">
+                                <i class="fa fa-clock-o"></i>
+                                <span ng-bind="eve.from"></span> to
+                                <span ng-bind="eve.to"></span>
+                            </div>
+                            <div class="row">
+                                <form class="col s12" name="event" ng-submit="addAppointment(event)" novalidate>
+                                    <!--<div class="row">
+                                        <div class="input-field col s12">
+                                            <i ng-class="{'active':focus}" class="mdi-editor-mode-edit prefix"></i>
+                                            <input id="title" contentEditable="true" type="text" focus="{{focus}}" class="validate" name="title" ng-model="newEvent.title">
+                                            <label for="title" ng-class="{'active':focus}">Title</label>
+                                        </div>
+                                    </div>-->
+                                    
+                                    <div class="row" ng-if="getCurrentUser().role==='admin'">
+                                        <div class="input-field col s12">
+                                            <i ng-class="{'active':focus}" class="mdi-editor-mode-edit prefix"></i>
+                                            <div class="select-wrapper">
+                                            <select id="filter_patient" select-2-custom ng-model='newEvent.PatientId' ng-change="onChange()" aria-placeholder="select 3">
+                                                <option selected disabled>Search by name</option>
+                                                <option ng-repeat="p in patients track by p._id"  value="{{p._id}}">{{p.first_name}} {{p.last_name}}
+                                                </option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="mdi-editor-mode-edit prefix"></i>
+                                            <textarea id="description" name="description" ng-model="newEvent.description" class="materialize-textarea validate" ng-maxlength="25" required></textarea>
+                                            <label for="description">Reason for visit</label>
+                                            <div class="errorTxt1" ng-show="event.description.$error.required && submitted" style="margin-left: 11%;"><div id="ufname-error" class="error">Reason is required</div></div>
+                                            <div class="errorTxt1" ng-show="event.description.$error.maxlength && submitted" style="margin-left: 11%;"><div id="uname-error" class="error">Reason must be 25 in length</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s10">
+                                            <i class="mdi-image-photo prefix"></i>
+                                            <select class="" ng-model="newEvent.icon" material-select watch ng-change="changeIcon()">
+                                                <option value="" disabled selected>Select Appointment Icon</option>
+                                                <option value="mdi-action-redeem" class="circle">BirthDay</option>
+                                                <option value="mdi-action-settings-phone" class="circle">FollowUp</option>
+                                                <option value="mdi-action-shopping-basket" class="circle">Routine</option>
+                                                <option value="mdi-action-theaters" class="circle">Visit</option>                                                
+                                                <option value="mdi-action-info"  class="circle">Info</option>
+                                                <option value="mdi-alert-warning" class="circle">Warning</option>
+                                                <option value="mdi-action-event" class="circle">Event</option>
+                                                
+                                            </select>
+                                        </div>
+                                        <div class="input-field col s1">
+                                            <label class="btn-floating" ng-class="newEvent.className">
+                                            <i class="mdi-action-theaters" ng-if="newEvent.icon ==='mdi-action-theaters'"></i>
+                                            <i class="mdi-action-shopping-basket" ng-if="newEvent.icon ==='mdi-action-shopping-basket'"></i>
+                                            <i class="mdi-action-settings-phone" ng-if="newEvent.icon ==='mdi-action-settings-phone'"></i>
+                                            <i class="mdi-action-redeem" ng-if="newEvent.icon ==='mdi-action-redeem'"></i>
+                                            <i class="mdi-action-info" ng-if="newEvent.icon ==='mdi-action-info'"></i>
+                                            <i class="mdi-alert-warning" ng-if="newEvent.icon ==='mdi-alert-warning'"></i>
+                                            <i class="mdi-action-event" ng-if="newEvent.icon ==='mdi-action-event'"></i>
+                                          </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s10">
+                                            <i class="mdi-editor-format-color-fill prefix"></i>
+                                            <input color-picker type="text" id="input_color" ng-model="newEvent.className" readonly="true" />
+                                            <label for="input_color">Color</label>
+                                        </div>
+                                        <div class="input-field col s1">
+                                            <label class="btn-floating" ng-class="newEvent.className"></label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s4">
+                                            <!--<input type='checkbox' id='event-allday' ng-model="newEvent.allDay" />
+                                            <label for='event-allday'>allDay?</label>-->
+                                        </div>
+                                        <div class="col s8 offset-s1 left">
+                                            <button class="btn indigo waves-effect waves-light" type="submit" name="action">Save
+                                                    <i class="mdi-content-send right"></i>
+                                                </button>
+                                            <button class="btn waves-effect waves-light" type="button" ng-click="deleteEvent()">
+                                                    <i class="mdi-action-delete"></i>
+                                                </button>
+                                        </div>
+                                    </div>
+                                    <div class="row small-group" ng-if="newEvent.createdAt">
+                                        <div class="col s8 offset-s1"><span>{{newEvent.User.name}} created @{{newEvent.createdAt | date : 'dd/MM/yyyy hh:mm a'}}</span></div>
+                                        <div class="col s8 offset-s1"><span>{{newEvent.User.name}} updated @{{newEvent.updatedAt | date : 'dd/MM/yyyy hh:mm a'}}</span></div>
+                                    </div>
+                                    <div class="row small-group" ng-if="!newEvent.createdAt">
+                                        <div class="col s8 offset-s1"><span>{{userInfo.user}} createdAt @{{userInfo.createdDate | date : 'dd/MM/yyyy hh:mm a'}}</span></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </aside>
+    <!-- LEFT RIGHT SIDEBAR NAV-->
+</div>

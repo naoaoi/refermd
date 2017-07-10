@@ -1,0 +1,101 @@
+<sidebar></sidebar>
+<!-- START CONTENT -->
+<div id="breadcrumbs-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col s11 left">
+       <h5 class="breadcrumbs-title">Calendar</h5>
+          <ol class="breadcrumbs">
+            <li><a href="/">Home</a></li>
+            <li class="active">Calendar</li>
+          </ol>
+      </div>
+      <div class="col s1 breadcrumbs-title right">
+        <button type="button" class="btn-floating btn-small waves-effect waves-light" data-position="bottom" data-delay="50" data-tooltip="Export to csv"
+          ng-click="main.exportCSV()" tooltipped>
+          <i class="material-icons">file_download</i>
+     </button>
+      </div>
+    </div>
+  </div>
+</div>
+<section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+
+        <div id="flight-card" class="card">
+          <div class="card-header indigo darken-1">
+            <div class="row">
+              <div class="col s12 m6 l7">
+                <div class="card-title">
+                  <h5 class="flight-card-title">Physician's Appointments</h5>
+                  <p class="flight-card-date">{{main.currentDate}}</p>
+                </div>
+              </div>
+              <div class="col s12 m6 l5" ng-if="main.currentRole==='physician'">
+                <p class="flight-card-date">&nbsp;</p>
+                <blink class="cyan-text" ng-if="main.slots && main.slots.length===0">Please set your business hours first from shift menu.</blink>
+              </div>
+              <div class="col s12 m6 l5" ng-if="main.currentRole!=='physician'">
+                <select id="filter_physician" select-2-custom class="amber darken-2" ng-model='main.physician' ng-change="main.onChange()"
+                  aria-placeholder="select 3">
+                  <option selected disabled>Filter By Physician</option>
+                  <option ng-repeat="p in main.physicians track by p._id" value="{{p._id}}">{{p.first_name}} {{p.last_name}}
+                  </option>
+                </select>
+                <p class="flight-card-date">&nbsp;</p>
+                <blink class="cyan-text" ng-if="main.slots && main.slots.length===0">This physician has not set any working shift.</blink>
+                <!-- Modal Trigger -->
+                <!-- Modal Structure -->
+                <div id="demoModal" class="modal">
+                  <div class="modal-content teal white-text">
+                    <h4>Phisician's Shift Hours</h4>
+                    <table>
+                      <thead ng-repeat="shift in shift.data">
+                        <tr>
+                          <th>Day</th>
+                          <th ng-repeat="(key, value) in shift['Monday']">{{key}}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="day in main.weekday" ng-if="day !=null">
+                          <td ng-bind="day"></td>
+                          <td ng-repeat="(key,value) in shift.data[0][day]" ng-bind="value"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="modal-footer  teal lighten-4">
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat">Got it</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-content-bg1">
+            <div class="card-content">
+              <div class="row">
+                <div class="col s12">
+                  <div class="row" ng-if="main.slots && main.slots.length!==0 && main.currentRole!=='physician'">
+                    <div class="col s9 left">
+                      <p><a style="color:lightsalmon"><i class="mdi-action-grade"></i>color shows non working shifts</a></p>
+                    </div>
+                    <div class="col s3"><p><a class='waves-effect waves-light right' href='#demoModal' modal>View shifts hrs</a></p></div>
+                  </div>
+                  <full-calendar id="dashboard-calendar-widget" view="main.view" holidays="main.holidays" slots="main.slots" data-events="appointments"></full-calendar>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form target="_blank" id="frmSubmit" style="display:none;" enctype='application/json' method="post">
+    <input type='hidden' name='_csrf' value=token></input>
+    <textarea id="data" name="data"></textarea>
+  </form>
+  <!--end container-->
+</section>
+<!-- END CONTENT -->

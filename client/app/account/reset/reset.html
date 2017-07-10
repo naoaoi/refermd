@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12 m4 offset-m4">
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+          <div class="input-field col s12 center">
+             <h4>Reset Password?</h4>
+            <p class="center">Enter new password</p>
+          </div>
+        </div>
+          <form class="form" name="resetForm" ng-submit="vm.resetPassword(resetForm)" novalidate>
+            
+              <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-action-lock-outline prefix"></i>
+            <input type="password" id="password" name="password" class="form-control" ng-model="vm.user.password" required>
+            <label for="password">Password*</label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-action-lock-outline prefix"></i>
+            <input type="password" id="password2" name="password2" class="form-control" ng-model="vm.user.password2" required compare-to="vm.user.password">
+            <label for="password2">Confirm Password*</label>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <button class="btn btn-inverse btn-lg btn-primary" ng-disabled="pwdforgetMailSend" type="submit">
+            Submit
+          </button>
+        </div>
+          </form>
+        </div>
+        <div class="card-action">
+          <p class="margin center medium-small" style="margin-right: -80% !important;"><a style="color:#0089ec !important" href="/login">Login</a></p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <script type="javascript">
+      $(document).ready(function() {
+        Materialize.updateTextFields();
+      });
+    </script>

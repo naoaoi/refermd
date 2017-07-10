@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12 m4 offset-m4">
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+          <div class="input-field col s12 center">
+            <img src="assets/images/profile.png" alt="" class="circle responsive-img valign profile-image-login">
+            <p class="center login-form-text">Appointment Manager</p>
+          </div>
+        </div>
+          <form class="login-form1" name="form" ng-submit="vm.login(form)" novalidate>
+            
+             <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            <input type="email" id="email" name="email" class="form-control" ng-model="vm.user.email" required>
+            <label for="email">Email</label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-action-lock-outline prefix"></i>
+            <input type="password" id="password" name="password" class="form-control" ng-model="vm.user.password" required>
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <button class="btn waves-effect waves-light" type="submit">
+            Login
+          </button>
+          </div>
+        </div>
+          </form>
+        </div>
+        <div class="card-action">
+          <p class="margin center medium-small left"><a style="color:#0089ec !important" href="/signup">Register Now!</a></p>
+          <p class="margin center medium-small" style="margin-right: -40% !important;"><a style="color:#0089ec !important" href="/forget">Forgot password ?</a></p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <script type="javascript">
+      $(document).ready(function() {
+        Materialize.updateTextFields();
+      });
+    </script>

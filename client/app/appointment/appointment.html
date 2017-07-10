@@ -1,0 +1,164 @@
+<sidebar></sidebar>
+<div id="breadcrumbs-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col s3 left">
+        <h5 class="breadcrumbs-title">Appointments</h5>
+          <ol class="breadcrumbs">
+            <li><a href="/">Home</a></li>
+            <li class="active">Appointment</li>
+          </ol>
+      </div>
+      <div class="col s12 m12 l5">
+        <div class="row">
+          <div class="input-field col s4">
+            <label for="sdate" class="">Start</label>
+            <input type="date" id="sdate" class="datepicker" ng-model="app.startDate" />
+          </div>
+          <div class="input-field col s4">
+            <label for="edate" class="">End</label>
+            <input type="date" id="edate" class="datepicker" ng-model="app.endDate" />
+          </div>
+          <div class="col s4 input-field">
+            <!--<p>Page {{app.curPage + 1}} of {{ app.numberOfPages()}}</p>-->
+            <label for="ps" class="">PageSize</label>
+            <input type="text" id="ps" ng-model="app.pageSize" />
+          </div>
+        </div>
+      </div>
+      
+      <div class="col s12 m6 l4 breadcrumbs-title right">
+        <!--<p class="left">Page {{app.curPage + 1}} of {{ app.numberOfPages()}}  app.curPage >= app.appointments.length/app.pageSize - 1</p>-->
+        <a href="" class="btn waves-effect waves-light indigo" tooltipped data-position="bottom" data-delay="50" data-tooltip="Card View"
+          ng-click="app.defaultMode='card'"><i class="mdi-action-view-module small"></i></a>
+        <a href="" class="btn waves-effect waves-light indigo" tooltipped data-position="bottom" data-delay="50" data-tooltip="List View"
+          ng-click="app.defaultMode='list'"><i class="mdi-action-view-list small"></i></a>
+        <a ng-class="{'linkDisabled' : app.curPage ===0 }" ng-click="app.curPage=app.curPage-1" class="btn waves-effect waves-light indigo"
+          tooltipped data-position="bottom" data-delay="50" data-tooltip="Previous">
+          <i class="mdi-hardware-keyboard-arrow-left small"></i></a>
+        <a ng-class="{'linkDisabled' : app.curPage >= app.numberOfPages()-1}" ng-click="app.curPage = app.curPage+1" class="btn waves-effect waves-light indigo"
+          tooltipped data-position="bottom" data-delay="50" data-tooltip="Next"><i class="mdi-hardware-keyboard-arrow-right small"></i></a>
+          <button class="btn small-btn  waves-effect waves-light right" ng-click="app.clearFilter();">reset</button>
+          <p class="pagenumber right">Page {{app.curPage + 1}} of {{ app.numberOfPages()}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row box-one" ng-show="app.defaultMode==='card'">
+  <div class="col s12 m6 l3" ng-repeat="appointment in app.appointments |orderBy: appointment.start:true | pagination: app.curPage * app.pageSize | limitTo: app.pageSize | daterange:app.startDate:app.endDate">
+    <div class="card" ng-class="appointment.className">
+      <div class="row">
+        <div class="col s4 right" style="margin-top:2%;">
+          <img src="assets/images/profile.png" alt="" class="circle responsive-img">
+          <!--<a class="right" ng-if="appointment.status==='Done'"><i class="white-text small mdi-action-alarm-on"></i></a>-->
+          </div>
+        
+        <div class="col s8">
+          <span class="white-text card-title">{{appointment.title}}</span>
+          <p class="white-text">+1234444444</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col s12">
+          <p class="white-text card-date">{{appointment.start | UTCToNow}}</p>
+          <span class="task-cat cyan">{{appointment.status}}</span>
+          <!--<div class="preloader-wrapper small right">
+            <div class="spinner-layer spinner-blue-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>-->
+        </div>
+      </div>
+    </div>
+      <!--<div class="card property  date hoverable waves-effect waves-block" ng-class="appointment.className">
+        <div class="card-content">
+          <span class="card-title white-text">{{appointment.title}}</span>
+          <div class="preloader-wrapper  right">
+            <img src="assets/images/profile.png" alt="" class="circle responsive-img">
+          </div>
+          <div class="container" data-bind="">
+						<div class="row">
+              <p class="white-text">+1234444444</p>
+              <p class="white-text">{{appointment.start | UTCToNow}}</p>
+						</div>
+          </div>
+        </div>
+      </div>-->
+  </div>
+</div>
+
+
+<div class="row box-one" ng-show="app.defaultMode==='list'">
+  <div class="col s12">
+    <div class="card-panel">
+      <table>
+        <thead>
+          <tr>
+            <th data-field="id">Name</th>
+            <th data-field="name">Reason to Visit</th>
+            <th data-field="price">Start</th>
+            <th data-field="price">End</th>
+            <th data-field="price">Status</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="appointment in app.appointments | pagination: app.curPage * app.pageSize | limitTo: app.pageSize | daterange:app.startDate:app.endDate">
+            <td>{{appointment.title}}</td>
+            <td>{{appointment.description}}</td>
+            <td>{{appointment.start | UTCToNow}}</td>
+            <td>{{appointment.end | UTCToNow}}</td>
+
+            <td ng-class="{'orange-text': appointment.status==='Awaiting', 'red-text': appointment.status==='Cancel','green-text': appointment.status==='Done'}">
+              <div input-field>
+                <select ng-model="appointment.status" material-select watch ng-change="app.setAppointmentStatus(appointment)">                    
+                      <option   ng-repeat="value in app.appointmentStatus">{{value}}</option>
+                  </select>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div class="row box-one">
+  <div class="col s12">
+    <div id="card-alert" class="card light-blue" ng-if="app.noRecords">
+      <div class="card-content white-text">
+        <p><i class="mdi-action-info-outline"></i> No Appointments</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+          $('#edate').pickadate({
+            container: 'body',
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year
+            onClose: function(){
+              $(document.activeElement).blur()
+            }
+          });
+          $('#sdate').pickadate({
+            container: 'body',
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year
+            onClose: function(){
+              $(document.activeElement).blur()
+            }
+          });
+        });
+</script>

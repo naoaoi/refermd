@@ -1,0 +1,85 @@
+<!--<link rel="stylesheet" href="assets/css/page-center/page-center.css">-->
+<div class="container">
+  <div class="row">
+    <div class="col s12 m4 offset-m4">
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+          <div class="input-field col s12 center">
+             <h4>Forgot Password?</h4>
+            <p class="center">Reset your password from mail</p>
+          </div>
+        </div>
+          <form class="form" name="forgetForm" ng-submit="vm.forgotPassword(forgetForm)" novalidate>
+            
+             <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            <input type="email" name="email" class="form-control" ng-model="vm.forget.email" required mongoose-error/>
+            <label for="email">Email*</label>
+            <div class="errorTxt1" ng-show="forgetForm.email.$error.required && vm.submitted" style="margin-left: 12%;"><div id="uname-error" class="error">Email address is required</div></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <button class="btn waves-effect waves-light" type="submit">
+            SUBMIT
+          </button>
+          </div>
+        </div>
+          </form>
+        </div>
+        <div class="card-action">
+          <p class="margin center medium-small left"><a style="color:#0089ec !important" href="/signup">Register Now!</a></p>
+          <p class="margin center medium-small" style="margin-right: -60% !important;"><a style="color:#0089ec !important" href="/login">Login</a></p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <script type="javascript">
+      $(document).ready(function() {
+        Materialize.updateTextFields();
+      });
+    </script>
+
+<!--<div class="container" >
+  <div class="row" >
+    <div class="col-sm-12">
+      <h1>Password forgotten?</h1>
+      <p>Submit your email addres</p>
+    </div>
+    <div class="col-sm-12">
+      {{forgetForm.$valid}}
+      <form class="form" name="forgetForm" ng-submit="vm.forgotPassword(forgetForm)" novalidate>
+
+        <div class="form-group" ng-class="{'has-error': forgetForm.email.$invalid}">
+          <label>Email address</label>
+          <input type="email" name="email" class="form-control" ng-model="vm.forget.email"
+                 required
+                 mongoose-error/>
+        </div>
+
+
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="forgetForm.email.$error.email && submitted">
+            Doesn't look like a valid email.
+          </p>
+          <p class="help-block" ng-show="forgetForm.email.$error.required && submitted">
+             Please enter your email.
+          </p>
+          <p class="help-block">{{ errors.other }}</p>
+        </div>
+
+        <div class="help-block" ng-show="forgetForm.email.$error.unknownMailAddress">
+          <p>The email address you entered is not known.</p>
+          <p>Check the address and send it again.</p>
+        </div>
+        <div class="col-sm-6">
+          <button class="btn btn-inverse btn-lg btn-primary" ng-disabled="pwdforgetMailSend" type="submit">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>-->

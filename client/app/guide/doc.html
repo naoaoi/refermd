@@ -1,0 +1,105 @@
+<sidebar></sidebar>
+
+<!-- START CONTENT -->
+<section id="content">
+  <div class="container">
+		<div class="section">
+
+			<h3>AppointerX- Real time appointment manager</h3>
+			<div class="divider"></div>
+			<ul class="collection with-header">
+				<li class="collection-item"> <strong>HighLights</strong>
+					<ul class="collection">
+						<li class="collection-item">Real Time appointments information with Socket.IO</li>
+						<li class="collection-item">Role Management, Doctor/Physician,Patient, Super Admin </li>
+						<li class="collection-item">Doctor/Physician Login, Patient Login and Admin Login</li>
+						<li class="collection-item">Doctor/Physician can add his Business hours </li>
+						<li class="collection-item">Doctor/Physician can add his Personal holidays </li>
+						<li class="collection-item">Doctor/Physician's Dashboard</li>
+						<li class="collection-item">Doctor/Physician's Appointments listing with card and list view</li>
+						<li class="collection-item">Doctor/Physician's Appointments searching/paging</li>
+						<li class="collection-item">Doctor wise calendar view</li>
+						<li class="collection-item">Patient can make an Appointment by selectig doctor</li>
+						<li class="collection-item">Patient can not edit another patient's appointment</li>
+
+						<li class="collection-item">Sendgrid mail intergrated with nodemailer package</li>
+						<li class="collection-item">Materialize datepicker with month and year selectable</li>
+						<li class="collection-item">Babel javascript</li>
+						<li class="collection-item">Can be extended to full Admin panel</li>
+						<li class="collection-item">Socket.IO with live data broadcasting</li>
+						
+					</ul>
+				</li>
+			</ul>
+			<ul class="collection with-header">
+				<li class="collection-header">
+					<h4>v 1.0</h4><span class="ultra-small">Initial Version</span></li>
+				<li class="collection-item"> <strong>Pre-requisites</strong>
+					<ul class="collection">
+						<li class="collection-item">1.Node http://nodejs.org/ (Server)</li>
+						<li class="collection-item">2.MySql http://dev.mysql.com/downloads/mysql/ (Database)</li>
+					</ul>
+				</li>
+			</ul>
+
+			<ul class="collection with-header">
+				<li class="collection-header">
+					<h4>Things to know</h4></li>
+				<li class="collection-item">Dev database connection: server/config/environment/development.js</li>
+				<li class="collection-item">Production Database : Dev database connection: server/config/environment/production.js</li>
+				<li class="collection-item">Seed data on/off: server/config/environment/index.js seedDB: false,FORCE_DB_SYNC: "false"</li>
+				<li class="collection-item">Seed data entry: server/config/seed.js</li>
+			</ul>
+
+			<ul class="collection with-header">
+				<li class="collection-header">
+					<h4>Technology Stack Used</h4></li>
+				<li class="collection-item">MySql 5.7</li>
+				<li class="collection-item">Express 4.9</li>
+				<li class="collection-item">AngularJS 1.4.9</li>
+				<li class="collection-item">Node.JS 4.2.3 </li>
+			</ul>
+			<ul class="collection with-header">
+				<li class="collection-header">
+					<h4>Install</h4></li>
+				<li class="collection-item">
+
+					Run the following commands and the application will start automatically
+					<pre>npm install yo -g (Install yeoman for scaffolding web application)</pre>
+					<pre>npm install grunt-cli -g (This creates and runs javascript repetative tasks) </pre>
+					<pre>npm install bower -g ( A frontend package manager for web applications) </pre>
+					<pre>npm install (Install all nodejs dependencies, also automatically installs bower components)</pre>
+				</li>
+				<li class="collection-item">
+					<h4> Usage </h4>
+					<p>Open command prompt or git bash in Administrator mode</p>
+					Run command <pre>npm install</pre> && <pre>bower install</pre>
+					<p>for further development in this project to add more modules install generator as below.</p>
+					<pre> npm install -g generator-angular-fullstack </pre> User angular fullstack guidence for further developement in
+					this Admin panel
+					<a target="_blank" href="https://github.com/angular-fullstack/generator-angular-fullstack#route">angular-fullstack</a>
+					<p>check the mongodb url in server/config/environment/developement file and production file</p>
+
+				</li>
+				<li class="collection-item">
+					<h4>Buid and Run</h4>
+					<pre>grunt serve  [for running in dev environment with livereload]  </pre>
+					<pre>grunt serve:dist  [Buid and run in production mode]  </pre>
+					<pre>grunt build--force  [buid with Administrator rights]</pre>
+
+					<blockquote>
+						Note : If any of the test failed or any error in running application, please install npm and bower with latest verion and
+						in Administrator mode in command prompt
+					</blockquote>
+
+				</li>
+				
+
+			</ul>
+
+
+		</div>
+	</div>
+
+
+</section>

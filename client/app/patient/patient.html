@@ -1,0 +1,139 @@
+<sidebar></sidebar>
+<!-- START CONTENT -->
+<section id="content">
+  <!--breadcrumbs start-->
+  <div id="breadcrumbs-wrapper">
+    <!-- Search for small screen -->
+    <div class="header-search-wrapper grey hide-on-large-only">
+      <i class="mdi-action-search active"></i>
+      <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Explore Materialize">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m12 l5">
+          <h5 class="breadcrumbs-title">Patients</h5>
+          <ol class="breadcrumbs">
+            <li><a href="/">Home</a></li>
+            <li class="active">Patients</li>
+          </ol>
+        </div>
+        <div class="input-field col s6">
+          <i ng-class="{'active':focus}" class="mdi-action-search prefix"></i>
+          <input id="search" type="text" ng-model="search_events">
+          <label for="search" ng-class="{'active':focus}">Search by name</label>
+        </div>
+        <div class="col s1 breadcrumbs-title right">
+        <button type="button" class="btn-floating btn-small waves-effect waves-light" data-position="bottom" data-delay="50" data-tooltip="Export to csv"
+          ng-click="exportCSV()" tooltipped>
+          <i class="material-icons">file_download</i>
+     </button>
+      </div>
+      </div>
+    </div>
+  </div>
+  <!--breadcrumbs end-->
+  <!-- Modal Trigger -->
+  <!--start container-->
+  <div class="container">
+    <div class="section">
+      <div class="col s12">
+        <div class="row">
+          <section class="plans-container" id="plans">
+            <div id="striped-table">
+              <div class="row">
+                <div class="col s12 m12 l12">
+                  <table class="striped">
+                    <thead>
+                      <tr>
+                        <th data-field="id">First Name</th>
+                        <th data-field="name">Last Name</th>
+                        <th data-field="price">Email</th>
+                        <th data-field="price">Mobile</th>
+                        <th data-field="price">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="p in patients | filter:search_events">
+                        <td>{{p.first_name}}</td>
+                        <td>{{p.last_name}}</td>
+                        <td>{{p.email}}</td>
+                        <td>{{p.mobile}}</td>
+                        <td> <a href="#demoModal{{p._id}}" modal>Details</a>
+
+                          <!-- Modal Structure -->
+                          <div id="demoModal{{p._id}}" class="modal">
+                            <div class="modal-content indigo-text">
+                              <h6>{{p.first_name}} {{p.last_name }}</h6>
+                              <!-- profile-page-header -->
+                              <div id="profile-page-header" class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                  <img class="activator" src="assets/images/user-profile-bg.jpg" alt="user background">
+                                </div>
+                                <figure class="card-profile-image">
+                                  <img src="assets/images/18.jpg" alt="profile image" class="circle z-depth-2 responsive-img activator">
+                                </figure>
+                                <div class="card-content">
+                                  <div class="row">
+                                    <div class="col s3 offset-s2">
+                                      <h4 class="card-title grey-text text-darken-4">{{p.first_name}} {{p.last_name}}</h4>
+                                      <p class="medium-small grey-text">{{p.role}}</p>
+                                    </div>
+                                    <div class="col s2 center-align">
+                                      <h4 class="card-title grey-text text-darken-4"></h4>
+                                      <p class="medium-small grey-text">&nbsp;</p>
+                                    </div>
+                                    <div class="col s2 center-align">
+                                      <h4 class="card-title grey-text text-darken-4"></h4>
+                                      <p class="medium-small grey-text">&nbsp;</p>
+                                    </div>
+                                    <div class="col s2 center-align">
+                                      <h4 class="card-title grey-text text-darken-4" style="margin-top: -26px;">{{p.createdAt | date:'MMM dd yyyy'}}</h4>
+                                      <p class="medium-small grey-text">Member Since</p>
+                                    </div>
+                                    <div class="col s1 right-align">
+                                      <a class="btn-floating activator waves-effect waves-light darken-2 right">
+                                        <i class="mdi-action-perm-identity"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card-reveal">
+                                  <p>
+                                    <span class="card-title grey-text text-darken-4">{{p.first_name}} {{p.last_name }} <i class="mdi-navigation-close right"></i></span>
+                                    <span><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> {{p.role}}</span>
+                                  </p>
+
+                                  <p>I am very supportive.</p>
+
+                                  <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> {{p.mobile}}</p>
+                                  <p><i class="mdi-communication-email cyan-text text-darken-2"></i> {{p.email}}</p>
+                                  <p><i class="mdi-navigation-check cyan-text text-darken-2"></i> {{p.npi}}</p>
+                                  <p><i class="mdi-device-airplanemode-on cyan-text text-darken-2"></i>{{p.city}}</p>
+                                </div>
+                              </div>
+                              <!--/ profile-page-header -->
+                            </div>
+                            <div class="modal-footer  teal lighten-4">
+                              <a class=" modal-action modal-close waves-effect waves-green btn-flat">Got it</a>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end container-->
+<form target="_blank" id="frmSubmit" style="display:none;" enctype='application/json' method="post">
+    <input type='hidden' name='_csrf' value=token></input>
+    <textarea id="data" name="data"></textarea>
+  </form>
+</section>
+<!-- END CONTENT -->

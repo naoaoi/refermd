@@ -1,0 +1,72 @@
+<sidebar></sidebar>
+
+<!--<div class="container">
+  <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
+  <ul class="list-group user-list">
+    <li class="list-group-item" ng-repeat="user in admin.users">
+	    <div class="user-info">
+	        <strong>{{user.name}}</strong><br>
+	        <span class="text-muted">{{user.email}}</span>
+	    </div>
+        <a ng-click="admin.delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+    </li>
+  </ul>
+</div>-->
+ <section id="content">        
+
+        <!--start container-->
+        <div class="container">
+
+          <div id="profile-page" class="section">
+            <!-- profile-page-header -->
+            <div id="profile-page-header" class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="assets/images/user-profile-bg.jpg" alt="user background">                    
+                </div>
+                <figure class="card-profile-image">
+                    <img src="assets/images/18.jpg" alt="profile image" class="circle z-depth-2 responsive-img activator">
+                </figure>
+                <div class="card-content">
+                  <div class="row">                    
+                    <div class="col s3 offset-s2">                        
+                        <h4 class="card-title grey-text text-darken-4">{{admin.user.first_name}} {{admin.user.last_name}}</h4>
+                        <p class="medium-small grey-text">{{admin.user.role}}</p>                        
+                    </div>
+                    <div class="col s2 center-align">
+                        <h4 class="card-title grey-text text-darken-4">{{admin.appointments.length}}</h4>
+                        <p class="medium-small grey-text">Appointments</p>                        
+                    </div>
+                    <div class="col s2 center-align">
+                        <h4 class="card-title grey-text text-darken-4">6</h4>
+                        <p class="medium-small grey-text">Patients</p>                        
+                    </div>                    
+                    <div class="col s2 center-align">
+                        <h4 class="card-title grey-text text-darken-4">{{admin.user.createdAt | date:'MMM dd yyyy'}}</h4>
+                        <p class="medium-small grey-text">Member Since</p>                        
+                    </div>                    
+                    <div class="col s1 right-align">
+                      <a class="btn-floating activator waves-effect waves-light darken-2 right">
+                          <i class="mdi-action-perm-identity"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-reveal">
+                    <p>
+                      <span class="card-title grey-text text-darken-4">{{admin.user.first_name}} {{admin.user.first_name }} <i class="mdi-navigation-close right"></i></span>
+                      <span><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> {{admin.user.role}}</span>
+                    </p>
+
+                    <p>I am very supportive.</p>
+                    
+                    <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> {{admin.user.mobile}}</p>
+                    <p><i class="mdi-communication-email cyan-text text-darken-2"></i> {{admin.user.email}}</p>
+                    <p><i class="mdi-navigation-check cyan-text text-darken-2"></i> {{admin.user.npi}}</p>
+                    <p><i class="mdi-device-airplanemode-on cyan-text text-darken-2"></i>{{admin.user.city}}</p>
+                </div>
+            </div>
+            <!--/ profile-page-header -->
+        </div>
+        </div>
+        <!--end container-->
+      </section>

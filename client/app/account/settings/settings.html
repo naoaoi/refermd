@@ -1,0 +1,212 @@
+<sidebar></sidebar>
+<div id="breadcrumbs-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <h5 class="breadcrumbs-title">Settings</h5>
+          <ol class="breadcrumbs">
+            <li><a href="/">Home</a></li>
+            <li class="active">Settings</li>
+          </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <!--Basic Card-->
+  <div id="basic-card" class="section">
+    <div class="row">
+      
+        
+          <div class="col s12 m12 l6">
+            <form class="form_pwd" name="form_pwd" ng-submit="vm.changePassword(form_pwd)" novalidate>
+              <div class="card">
+                <h4 class="header" style="margin-left:7px">Change Password</h4>
+                <div class="card-content">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i ng-class="{'active':focus}" class="mdi-action-lock-outline prefix"></i>
+                      <input id="currrent_pwd" type="password" name="currrent_pwd" focus="{{focus}}" class="validate" ng-model="vm.user.oldPassword"
+                        required>
+                      <label for="currrent_pwd" ng-class="{'active':focus}">Currrent Password</label>
+                      <div class="errorTxt1" ng-show="form_pwd.currrent_pwd.$error.required && vm.submittedPasswordform">
+                        <div id="ufname-error" class="error">current password is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i ng-class="{'active':focus}" class="mdi-action-lock-outline prefix"></i>
+                      <input id="new_pwd" type="password" name="new_pwd" focus="{{focus}}" class="validate" ng-model="vm.user.newPassword" ng-minlength="3"
+                        required>
+                      <label for="new_pwd" ng-class="{'active':focus}">New Password</label>
+                      <div class="errorTxt1" ng-show="form_pwd.new_pwd.$error.required && vm.submittedPasswordform">
+                        <div id="ufname-error" class="error">New password is required</div>
+                      </div>
+                      <div class="errorTxt1" ng-show="form_pwd.new_pwd.$error.minlength && vm.submittedPasswordform">
+                        <div id="ufname-error" class="error">Password must be at least 3 characters.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i ng-class="{'active':focus}" class="mdi-action-lock-outline prefix"></i>
+                      <input id="confirm_pwd" type="password" name="confirm_pwd" focus="{{focus}}" class="validate" match="vm.user.newPassword"
+                        ng-model="vm.user.confirmPassword" ng-minlength="3" required>
+                      <label for="confirm_pwd" ng-class="{'active':focus}">Confirm New Password</label>
+                      <div class="errorTxt1" ng-show="form_pwd.confirm_pwd.$error.required && vm.submittedPasswordform">
+                        <div id="ufname-error" class="error">Confirm password is required</div>
+                      </div>
+                      <div class="errorTxt1" ng-show="form_pwd.confirm_pwd.$error.minlength && vm.submittedPasswordform">
+                        <div id="ufname-error" class="error">Password must be at least 3 characters.</div>
+                      </div>
+                      <div class="errorTxt1" ng-show="form_pwd.confirm_pwd.$error.match && vm.submittedPasswordform">
+                        <div id="ufname-error" class="error">Passwords must match</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-action">
+                  <button class="btn btn-lg btn-primary" type="submit">Save changes</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col s12 m12 l6">
+             <form class="form" name="form" ng-submit="vm.updateProfile(form)" novalidate>
+            <div class="card">
+              <h4 class="header" style="margin-left:7px">Update Profile</h4>
+              <div class="card-content">
+               
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <i class="mdi-action-account-circle prefix"></i>
+                      <input id="firstname" name="firstname" type="text" ng-model="vm.user.first_name" required>
+                      <label for="firstname">FirstName*</label>
+                      <div class="errorTxt1" ng-show="form.firstname.$error.required && vm.submittedProfileform" >
+                        <div id="ufname-error" class="error">FirstName is required</div>
+                      </div>
+                    </div>
+                    <div class="input-field col s6">
+                      <i class="mdi-action-account-circle prefix"></i>
+                      <input id="lastname" name="lastname" type="text" ng-model="vm.user.last_name" required>
+                      <label for="lastname">LastName*</label>
+                      <div class="errorTxt1" ng-show="form.lastname.$error.required && vm.submittedProfileform" >
+                        <div id="ulname-error" class="error">LastName is required</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <i class="mdi-action-verified-user prefix"></i>
+                      <input id="bdate" name="bdate" type="text" ng-model="vm.user.birthdate" class="validate">
+                      <label for="bdate">BirthDate</label>
+                      <div class="errorTxt1" ng-show="form.bdate.$error.required && vm.submittedProfileform" >
+                        <div id="ulname-error" class="error">Birthdate is required</div>
+                      </div>
+                    </div>
+                    <div class="input-field col s6">
+                      <i class="mdi-action-verified-user prefix"></i>
+                      <input id="age" type="number" numbers-only class="validate" ng-model="vm.user.age">
+                      <label for="age">Age</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <i class="mdi-communication-email prefix"></i>
+                      <input id="email" name="email" type="email" ng-model="vm.user.email" readonly>
+                      <label for="email">Email</label>
+                      <!--<div class="errorTxt1" ng-show="form.email.$error.required && vm.submittedProfileform" >
+                        <div id="uname-error" class="error">Email address is required</div>
+                      </div>-->
+                      <!--<div class="errorTxt1" ng-show="form.email.$error.cemail && vm.submittedProfileform" ><div id="uname-error" class="error">Please provide valid email</div></div>-->
+                    </div>
+
+                    <div class="input-field col s6">
+                      <i class="mdi-action-lock-outline prefix"></i>
+                      <input id="mobile" name="mobile" type="text" class="validate" ng-model="vm.user.mobile" required>
+                      <label for="mobile">Mobile*</label>
+                      <div class="errorTxt1" ng-show="form.mobile.$error.required && vm.submittedProfileform" >
+                        <div id="uname-error" class="error">Mobile is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" ng-if="vm.user.role==='physician'">
+                    <div class="input-field col s12">
+                      <i class="mdi-editor-mode-edit prefix"></i>
+                      <input id="organization_name" name="organization_name" type="text" class="validate" ng-model="vm.user.organization_name">
+                      <label for="organization_name">Organization name</label>
+                    </div>
+                  </div>
+                  <div class="row" ng-if="vm.user.role==='physician'">
+                    <div class="input-field col s6">
+                      <i class="mdi-editor-mode-edit prefix"></i>
+                      <input  id="npi" type="text" name="npi" class="form-control" ng-model="vm.user.npi" ng-minlength="10" ng-maxlength="10" required/>
+                      <label for="npi">NPI*</label>
+                      <div class="errorTxt1" ng-show="form.npi.$error.required && vm.submittedProfileform" >
+                        <div id="uname-error" class="error">NPI is required</div>
+                      </div>
+                      <div class="errorTxt1" ng-show="form.npi.$error.minlength && vm.submittedProfileform" >
+                        <div id="uname-error" class="error">NPI must be 10 in length</div>
+                      </div>
+                    </div>
+                    <div class="input-field col s6">
+                      <i class="mdi-editor-mode-edit prefix"></i>
+                      <input id="location" type="text" name="location" class="form-control" ng-model="vm.user.location" />
+                      <label for="location">Location</label>
+                    </div>
+                  </div>
+                  <div class="row" ng-if="vm.user.role==='physician'">
+                    <div class="input-field col s6">
+                      <i class="mdi-editor-mode-edit prefix"></i>
+                      <input id="address1" type="text" name="address1" class="form-control" ng-model="vm.user.addresss1" />
+                      <label for="address1">address1</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <i class="mdi-editor-mode-edit prefix"></i>
+                      <input id="address2" type="text" name="address2" class="form-control" ng-model="vm.user.address2" />
+                      <label for="address2">address2</label>
+                    </div>
+                  </div>
+                  <div class="row" ng-if="vm.user.role==='physician'">
+                    <div class="input-field col s6">
+                      <i class="mdi-editor-mode-edit prefix"></i>
+                      <input id="city" type="text" name="city" class="form-control" ng-model="vm.user.city" />
+                      <label for="city">City</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <i class="mdi-editor-mode-edit prefix"></i>
+                      <input type="text" id="zip" name="zip" class="form-control" ng-model="vm.user.zip" required/>
+                      <label for="zip">Pincode*</label>
+                    </div>
+                  </div>
+
+                  <div class="row" ng-if="vm.user.role==='physician'">
+                    <div class="input-field col s6">
+                      <i class="mdi-editor-mode-edit prefix"></i>
+                      <input id="state" type="text" name="state" class="form-control" ng-model="vm.user.state" />
+                      <label for="state">State</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <i class="mdi-editor-mode-edit prefix"></i>
+                      <input id="country" type="text" name="country" class="form-control" ng-model="vm.user.country" />
+                      <label>Country</label>
+                    </div>
+                  </div>
+              </div>
+              <div class="card-action">
+                <button class="btn btn-lg btn-primary" type="submit">Save changes</button>
+
+              </div>
+            </div>
+             </form>
+          </div>
+        
+      
+    </div>
+  </div>
+
+
+</div>

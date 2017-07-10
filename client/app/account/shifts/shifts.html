@@ -1,0 +1,99 @@
+<sidebar></sidebar>
+<div id="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <h5 class="breadcrumbs-title">Business Hours</h5>
+          <ol class="breadcrumbs">
+            <li><a href="/">Home</a></li>
+            <li class="active">Shifts</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="container">
+  <div class="row">
+    <div class="col s6 m6 l4">
+      <form class="col s12" name="shiftForm" ng-submit="vm.setBusinessHours(shiftForm)">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="mdi-image-timer prefix"></i>
+            <label for="input_starttime">Start Time</label>
+            <input id="input_starttime" class="timepicker" type="text" ng-model="vm.slot.start">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="mdi-image-timer prefix"></i>
+            <label for="input_endtime">End Time</label>
+            <input id="input_endtime" class="timepicker" type="text" ng-model="vm.slot.end">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="mdi-action-today prefix"></i>
+            <div class="select-wrapper">
+            <select multiple="multiple" select-2-custom ng-model="vm.slot.dow" id="se">
+                <option value="1">Monday</option>
+                <option value="2">Tuesday</option>
+                <option value="3">Wednesday</option>
+                <option value="4">Thursday</option>
+                <option value="5">Friday</option>
+                <!--<option value="6">Saturday</option>-->
+        </select> 
+        </div>
+          </div>
+          
+          
+        </div>
+        <div class="row">
+          <div class="col s8">
+            <button class="btn indigo waves-effect waves-light" type="submit" name="action">Save</button>
+            <button class="btn indigo waves-effect waves-light" ng-click="vm.reset()" type="button" name="reset">Reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col s6 m6 l8">
+                  <table class="highlight">
+                    <thead>
+                      <tr>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Days</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="p in vm.slots track by $index">
+                        <td>{{p.start}}</td>
+                        <td>{{p.end}}</td>{{p.dow}}
+                        <td><div ng-bind="vm.parseDays(p.dow)"></div></td>
+                        <td><a href ng-click="vm.editSlot(p)">Edit</a></td>
+                        <td><a href ng-click="vm.deleteSlot(p)">Delete</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+  </div>
+</div>
+
+
+
+
+<!--<script type="text/javascript" src="assets/js/materialize.js"></script>-->
+<script>
+  $(document).ready(function(){
+  $('#input_starttime').pickatime({
+              twelvehour: true,
+              container: 'body'
+          });
+          
+    $('#input_endtime').pickatime({
+        twelvehour: true,
+        container: 'body'
+    });
+  });
+</script>

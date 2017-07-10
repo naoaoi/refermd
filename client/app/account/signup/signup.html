@@ -1,0 +1,126 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12 m5 offset-m4">
+      <div class="card">
+        <div class="card-content">
+          <form class="form" name="form" ng-submit="vm.register(form)" novalidate>
+            <div class="row">
+              <div class="input-field col s12 center">
+                <h4>Join Now</h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="mdi-editor-mode-edit prefix"></i>
+                <input id="firstname" name="firstname" type="text" ng-model="vm.user.firstname" required>
+                <label for="firstname">FirstName*</label>
+                <div class="errorTxt1" ng-show="form.firstname.$error.required && vm.submitted" style="margin-left: 18%;"><div id="ufname-error" class="error">FirstName is required</div></div>
+              </div>
+              <div class="input-field col s6">
+                <i class="mdi-editor-mode-edit prefix"></i>
+                <input id="lastname" name="lastname" type="text" ng-model="vm.user.lastname" required>
+                <label for="lastname">LastName*</label>
+                <div class="errorTxt1" ng-show="form.lastname.$error.required && vm.submitted" style="margin-left: 18%;"><div id="ulname-error" class="error">LastName is required</div></div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="mdi-social-person-outline prefix"></i>
+                <input id="email" name="email" type="email"  class="validate" ng-model="vm.user.email" required>
+                <label for="email" >Email*</label>
+                <div class="errorTxt1" ng-show="form.email.$error.required && vm.submitted" style="margin-left: 18%;"><div id="uname-error" class="error">Email address is required</div></div>
+                <!--<div class="errorTxt1" ng-show="form.email.$error.cemail && vm.submitted" style="margin-left: 18%;"><div id="uname-error" class="error">Please provide valid email</div></div>-->
+              </div>
+              
+              <div class="input-field col s6">
+                <i class="mdi-action-lock-outline prefix"></i>
+                <input id="password" name="password" type="password" class="validate" ng-model="vm.user.password" required>
+                <label for="password">Password*</label>
+                <div class="errorTxt1" ng-show="form.password.$error.required && vm.submitted" style="margin-left: 18%;"><div id="uname-error" class="error">Password is required</div></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="mdi-editor-mode-edit prefix"></i>
+                <select name="role" id="role" ng-model="vm.user.role" required>
+                        <option value="" disabled selected>Select your profile</option>
+                        <option value="patient">Patient</option>
+                        <option value="physician">Physician</option>
+                      </select>
+                <label>Select Role*</label>
+                <div class="errorTxt1" ng-show="form.role.$error.required && vm.submitted" style="margin-left: 9%;"><div id="uname-error" class="error">Please select a role.</div></div>
+                
+              </div>
+            </div>
+            <div class="row" ng-if="vm.user.role==='physician'">
+              <div class="input-field col s6">
+                <i class="mdi-editor-mode-edit prefix"></i>
+                <input type="text" name="npi" class="form-control" ng-model="vm.user.npi" ng-minlength="10" ng-maxlength="10" required/>
+                <label for="npi">NPI*</label>
+                <div class="errorTxt1" ng-show="form.npi.$error.required && vm.submitted" style="margin-left: 18%;"><div id="uname-error" class="error">NPI is required</div></div>
+                <div class="errorTxt1" ng-show="form.npi.$error.minlength && vm.submitted" style="margin-left: 18%;"><div id="uname-error" class="error">NPI must be 10 in length</div></div>
+              </div>
+              <div class="input-field col s6">
+                <i class="mdi-editor-mode-edit prefix"></i>
+                <input type="text" name="location" class="form-control" ng-model="vm.user.location" />
+                <label for="location">Location</label>
+              </div>
+            </div>
+            <div class="row" ng-if="vm.user.role==='physician'">
+              <div class="input-field col s6">
+                <i class="mdi-editor-mode-edit prefix"></i>
+                <input type="text" name="address1" class="form-control" ng-model="vm.user.addresss1" />
+                <label for="address1">address1</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="mdi-editor-mode-edit prefix"></i>
+                <input type="text" name="address2" class="form-control" ng-model="vm.user.address2" />
+                <label for="address2">address2</label>
+              </div>
+            </div>
+            <div class="row" ng-if="vm.user.role==='physician'">
+              <div class="input-field col s6">
+                <i class="mdi-editor-mode-edit prefix"></i>
+                <input type="text" name="city" class="form-control" ng-model="vm.user.city" />
+                <label for="city">City</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="mdi-editor-mode-edit prefix"></i>
+                <input type="text" name="zip" class="form-control" ng-model="vm.user.zip" required/>
+                <label for="zip">Pincode*</label>
+              </div>
+            </div>
+            
+            <div class="row" ng-if="vm.user.role==='physician'">
+              <div class="input-field col s6">
+                <i class="mdi-editor-mode-edit prefix"></i>
+                <input type="text" name="state" class="form-control" ng-model="vm.user.state" />
+                <label for="state">State</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="mdi-editor-mode-edit prefix"></i>
+                <input type="text" name="country" class="form-control" ng-model="vm.user.country" />
+                <label>Country</label>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="input-field col s12 m4">
+                <button class="btn btn-inverse col s12" type="submit">Sign up
+          </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-action">
+          <!--<input type="submit" class="btn" value="Sign In">-->
+          <p class="margin center medium-small sign-up">Already have an account? <a href="/login">Login</a></p>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+    </script>

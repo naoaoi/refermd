@@ -1,0 +1,66 @@
+
+<!-- START HEADER -->
+  <header id="header" class="page-topbar" ng-if="nav.isLoggedIn()">
+        <!-- start header nav-->
+        <div class="navbar-fixed">
+            <nav class="navbar-color indigo darken-1">
+                <div class="nav-wrapper hide-on-med-and-down">
+                    <ul class="left" >                      
+                      <li>
+                          <h1 class="logo-wrapper">
+                            <a href="/"><i class="mdi-notification-event-note"></i></a> 
+                          </h1></li>
+                          <li><a href="/">AppointerX</a></li>
+                    </ul>
+                    <ul class="s12 right">                      
+                      <li><a href="/settings" ng-if="nav.userName">Welcome, {{ nav.getCurrentUser().first_name }} {{ nav.getCurrentUser().last_name }}</a></li>
+                    </ul>
+                </div>
+                <div class="nav-wrapper hide-on-large-only hide-on-small-only">
+                    <ul class="left" >                      
+                      <li>
+                          <h1 class="logo-wrapper">
+                            <a href="/" style=" margin-left: 54px;"><i class="mdi-notification-event-note"></i></a> 
+                          </h1></li>
+                          <li style="margin-left: -24px;margin-top: -1px;"><a href="/">AppointerX</a></li>
+                    </ul>
+                    <ul class="s12 right">                      
+                      <li><a href="/settings" ng-if="nav.userName">Welcome, {{ nav.getCurrentUser().first_name }} {{ nav.getCurrentUser().last_name }}</a></li>
+                    </ul>
+                </div>
+                <div class="nav-wrapper hide-on-med-and-up">
+                    <ul class="center">                      
+                      <li>
+                          <h1 class="logo-wrapper">
+                            <a href="/" style=" margin-left: 54px;margin-top: 10px;" ><i class="mdi-notification-event-note"></i></a> 
+                          </h1></li>
+                          <li style="margin-left: -24px;margin-top: -1px;"><a href="/">AppointerX</a></li>
+                    </ul>
+                    <ul class="s12 right">                      
+                      <li><a href="/settings" ng-if="nav.userName">Welcome, {{ nav.getCurrentUser().first_name }} {{ nav.getCurrentUser().last_name }}</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- end header nav-->
+  </header>
+  <header id="header" class="page-topbar" ng-if="!nav.isLoggedIn()">
+        <!-- start header nav-->
+        <div class="navbar-fixed">
+            <nav class="navbar-color indigo darken-1">
+                <div class="nav-wrapper">
+                    <ul class="left">
+                          <li>
+                          <h1 class="logo-wrapper">
+                            <a href="/" style="height:50px;width:50px">
+                                <i class="mdi-notification-event-note"></i>
+                            </a> 
+                          </h1></li>
+                          <li><a href="/">AppointerX</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- end header nav-->
+  </header>
+<!-- END HEADER -->

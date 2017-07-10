@@ -1,0 +1,142 @@
+<sidebar></sidebar>
+<div id="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <h5 class="breadcrumbs-title">Personal Holidays</h5>
+          <ol class="breadcrumbs">
+            <li><a href="/">Home</a></li>
+            <li class="active">Holidays</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="container">
+  <div class="row">
+    <div class="col s6 m6 l4">
+      <form class="col s12" name="holidayForm" ng-submit="vm.save(holidayForm)" novalidate>
+        <div class="row">
+            <div class="input-field col s12">
+                <i ng-class="{'active':focus}" class="mdi-editor-mode-edit prefix"></i>
+                <input id="title" type="text" focus="{{focus}}" class="validate" name="title" ng-model="vm.holiday.title" required>
+                <label for="title" ng-class="{'active':focus}">Title</label>
+                <div class="errorTxt1" ng-show="holidayForm.title.$error.required && vm.submitted" style="margin-left: 18%;"><div id="ufname-error" class="error">title is required</div></div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="mdi-image-timer prefix"></i>
+            <label for="startdate">FromDate*</label>
+            <input id="startdate" name="startdate" class="datepicker" type="date" ng-model="vm.holiday.fromdate" required>
+            <div class="errorTxt1" ng-show="holidayForm.startdate.$error.required && vm.submitted" style="margin-left: 18%;"><div id="ufname-error" class="error">fromdate is required</div></div> 
+          </div>
+          <div class="input-field col s6">
+            <i class="mdi-image-timer prefix"></i>
+            <label for="starttime">FromTime*</label>
+            <input id="starttime" name="starttime" class="timepicker" type="text" ng-model="vm.holiday.fromtime" required>
+            <div class="errorTxt1" ng-show="holidayForm.starttime.$error.required && vm.submitted" style="margin-left: 18%;"><div id="ufname-error" class="error">fromtime is required</div></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="mdi-image-timer prefix"></i>
+            <label for="enddate">ToDate*</label>
+            <input id="enddate" name="enddate" class="datepicker" type="date" ng-model="vm.holiday.todate" required>
+            <div class="errorTxt1" ng-show="holidayForm.enddate.$error.required && vm.submitted" style="margin-left: 18%;"><div id="ufname-error" class="error">To date is required</div></div>
+          </div>
+          <div class="input-field col s6">
+            <i class="mdi-image-timer prefix"></i>
+            <label for="endtime">ToTime*</label>
+            <input id="endtime" name="endtime" class="timepicker" type="text" ng-model="vm.holiday.totime" required>
+            <div class="errorTxt1" ng-show="holidayForm.endtime.$error.required && vm.submitted" style="margin-left: 18%;"><div id="ufname-error" class="error">totime is required</div></div>
+          </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-field col s10">
+                <i class="mdi-editor-format-color-fill prefix"></i>
+                <input type="text" id="input_color" ng-model="vm.holiday.className" readonly="true" />
+                <label for="input_color">Color</label>
+            </div>
+            <div class="input-field col s1">
+                <label class="btn-floating" ng-class="vm.holiday.className"></label>
+            </div>
+        </div>
+        <!--<div class="row">
+            <div class="input-field col s4">
+                <input type='checkbox' id='event-allday' ng-model="vm.holiday.allDay" />
+                <label for='event-allday'>allDay?</label>
+            </div>
+        </div>-->
+        <div class="row">
+          <div class="col s8">
+            <button class="btn indigo waves-effect waves-light" type="submit" name="action">Save</button>
+            <button class="btn indigo waves-effect waves-light" ng-click="vm.reset()" type="button" name="reset">Reset</button>            
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col s6 m6 l8">
+                  <table class="striped">
+                    <thead>
+                      <tr>
+                        <th data-field="price">Title</th>
+                        <th data-field="id">From</th>
+                        <th data-field="name">To</th>
+                        <th data-field="price">Edit</th>
+                        <th data-field="price">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="p in vm.holidays track by $index">
+                        <td>{{p.title}}</td>
+                        <td>{{p.start | UTCToNow}}</td>
+                        <td>{{p.end  | UTCToNow}}</td>
+                        
+                        <td><a href="#" ng-click="vm.editHoliday(p)">Edit</a></td>
+                        <td><a href="#" ng-click="vm.deleteHoliday(p)">Delete</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+  </div>
+</div>
+
+
+
+
+<!--<script type="text/javascript" src="assets/js/materialize.js"></script>-->
+<script>
+  $(document).ready(function(){
+  
+    $('#startdate').pickadate({
+            container: 'body',
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year
+            onClose: function(){
+              $(document.activeElement).blur()
+            }
+          });
+          
+           $('#enddate').pickadate({
+            container: 'body',
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year
+            onClose: function(){
+              $(document.activeElement).blur()
+            }
+          });
+  
+          $('#starttime').pickatime({
+              twelvehour: true,
+              container: 'body'
+          });
+          $('#endtime').pickatime({
+              twelvehour: true,
+              container: 'body'
+          });
+          
+          $('select').material_select();   
+  });
+</script>
